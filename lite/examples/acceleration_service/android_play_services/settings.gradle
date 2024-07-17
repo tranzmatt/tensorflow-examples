@@ -1,1 +1,2 @@
 include ':app'
+rootProject.name = 'TFLite Acceleration Detection'

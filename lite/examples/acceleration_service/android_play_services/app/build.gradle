@@ -3,12 +3,12 @@ apply plugin: 'com.google.android.gms.strict-version-matcher-plugin'
 
 
 android {
-    compileSdk 31
+    compileSdk 33
 
     defaultConfig {
         applicationId "org.tensorflow.lite.examples.accelerationservice"
-        minSdk 21
-        targetSdk 31
+        minSdk 28
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -28,11 +28,11 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
-    aaptOptions {
-        noCompress "bin"
-        noCompress "tflite"
+    namespace 'org.tensorflow.lite.examples.accelerationservice'
+    androidResources {
+        noCompress 'tflite'
     }
+
 }
 
 
@@ -43,15 +43,15 @@ dependencies {
     implementation "com.google.android.gms:play-services-tflite-support:16.1.0"
     implementation "com.google.android.gms:play-services-tflite-gpu:16.2.0"
 
-    implementation "com.google.android.gms:play-services-tasks:18.0.2"
-    implementation "androidx.appcompat:appcompat:1.4.1"
+    implementation "com.google.android.gms:play-services-tasks:18.2.0"
+    implementation "androidx.appcompat:appcompat:1.5.0"
 
     // https://mvnrepository.com/artifact/com.google.errorprone/error_prone_annotations
     implementation group: 'com.google.errorprone', name: 'error_prone_annotations', version: '2.18.0'
 
-    androidTestImplementation "androidx.test:rules:1.1.0"
-    androidTestImplementation "androidx.test:runner:1.1.0"
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation "androidx.test:rules:1.6.1"
+    androidTestImplementation "androidx.test:runner:1.6.1"
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
     androidTestImplementation "com.google.truth:truth:1.1.3"
 }
 
