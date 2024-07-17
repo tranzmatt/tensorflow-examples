@@ -6,8 +6,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
   compileSdkVersion 29
-  buildToolsVersion "29.0.0"
-  defaultConfig {
+    defaultConfig {
     applicationId "org.tensorflow.lite.examples.posenet"
     minSdkVersion 21
     targetSdkVersion 23
@@ -21,14 +20,12 @@ android {
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
     }
   }
-  aaptOptions {
-    noCompress "tflite"
+  androidResources {
+    noCompress 'tflite'
   }
-  lintOptions {
-    checkReleaseBuilds false
-    // Or, if you prefer, you can continue to check for errors in release builds,
-    // but continue the build even when errors are found:
+  lint {
     abortOnError false
+    checkReleaseBuilds false
   }
 }
 

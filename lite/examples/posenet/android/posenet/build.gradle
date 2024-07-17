@@ -6,13 +6,10 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.0"
 
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -24,17 +21,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
-    aaptOptions {
-    noCompress "tflite"
-  }
-
-    lintOptions {
-        checkReleaseBuilds false
-        // Or, if you prefer, you can continue to check for errors in release builds,
-        // but continue the build even when errors are found:
-        abortOnError false
+    androidResources {
+        noCompress 'tflite'
     }
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+
+
 }
 
 // Download default models; if you wish to use your own models then
