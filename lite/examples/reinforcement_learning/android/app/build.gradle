@@ -2,19 +2,16 @@ apply plugin: 'com.android.application'
 apply plugin: 'de.undercouch.download'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 33
     defaultConfig {
         applicationId "org.tensorflow.lite.examples.reinforcementlearning"
-        minSdkVersion 21
-        targetSdkVersion 29
+        minSdkVersion 28
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    aaptOptions {
-        noCompress "tflite"
-    }
 
     buildTypes {
         release {
@@ -26,6 +23,10 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+    namespace 'org.tensorflow.lite.examples.reinforcementlearning'
+    androidResources {
+        noCompress 'tflite'
     }
 }
 
