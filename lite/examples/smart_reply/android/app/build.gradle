@@ -2,11 +2,11 @@ apply plugin: 'com.android.application'
 apply plugin: 'de.undercouch.download'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 33
     defaultConfig {
         applicationId "org.tensorflow.lite.examples.smartreply.SmartReply"
-        minSdkVersion 19
-        targetSdkVersion 28
+        minSdkVersion 28
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
         ndk {
@@ -15,9 +15,6 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    aaptOptions {
-        noCompress "tflite"
-    }
 
     buildTypes {
         release {
@@ -40,6 +37,10 @@ android {
         flatDir {
             dirs 'libs'
         }
+    }
+    namespace 'org.tensorflow.lite.examples.smartreply'
+    androidResources {
+        noCompress 'tflite'
     }
 }
 
