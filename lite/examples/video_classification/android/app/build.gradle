@@ -36,6 +36,7 @@ android {
     androidResources {
         noCompress 'tflite'
     }
+    namespace 'org.tensorflow.lite.examples.videoclassification'
 }
 
 
