@@ -21,7 +21,8 @@ android {
     }
   }
 
-  namespace 'org.tensorflow.lite.examples.posenet'
+  namespace 'org.tensorflow.lite.examples.posenet.app'
+
   androidResources {
     noCompress 'tflite'
   }
