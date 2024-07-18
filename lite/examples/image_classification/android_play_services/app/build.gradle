@@ -21,14 +21,14 @@ apply plugin: "de.undercouch.download"
 
 android {
     namespace 'org.tensorflow.lite.examples.classification.playservices'
-    compileSdkVersion 31
+    compileSdkVersion 33
 
     defaultConfig {
         applicationId 'org.tensorflow.lite.examples.classification.playservices'
         // ImageClassificationHelper class uses android.util.Size(), which is
         // available from SDK 21.
-        minSdkVersion 21
-        targetSdkVersion 31
+        minSdkVersion 28
+        targetSdkVersion 33
         versionCode 1
         versionName "0.0.1"
 
@@ -101,9 +101,9 @@ dependencies {
     implementation "androidx.camera:camera-view:1.0.0-alpha32"
 
     // Tensorflow Lite in Play Services dependencies
-    implementation "com.google.android.gms:play-services-tflite-gpu:16.1.1-eap03"
-    implementation "com.google.android.gms:play-services-tflite-java:16.0.2-eap03"
-    implementation "com.google.android.gms:play-services-tflite-support:16.0.2-eap03"
+    implementation "com.google.android.gms:play-services-tflite-gpu:16.2.0"
+    implementation "com.google.android.gms:play-services-tflite-java:16.1.0"
+    implementation "com.google.android.gms:play-services-tflite-support:16.1.0"
 
     // Testing-only dependencies
     testImplementation 'org.robolectric:robolectric:4.4'
