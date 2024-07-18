@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'de.undercouch.download'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 33
 
     defaultConfig {
         applicationId "org.tensorflow.lite.examples.superresolution"
-        minSdkVersion 21
-        targetSdkVersion 28
+        minSdkVersion 28
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
         externalNativeBuild {
@@ -32,15 +32,9 @@ android {
         }
     }
 
-    aaptOptions {
-        noCompress "tflite"
-    }
     compileOptions {
-        sourceCompatibility = '1.8'
-        targetCompatibility = '1.8'
-    }
-    lintOptions {
-        abortOnError false
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     sourceSets {
@@ -57,6 +51,13 @@ android {
             version "3.6.0"
         }
     }
+    namespace 'org.tensorflow.lite.examples.superresolution'
+    androidResources {
+        noCompress 'tflite'
+    }
+    lint {
+        abortOnError false
+    }
 }
 
 // import download tasks
@@ -65,7 +66,7 @@ project.ext.ASSET_DIR = projectDir.toString() + '/src/main/assets'
 apply from: 'download.gradle'
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'com.google.guava:guava:30.0-android'
+    implementation 'androidx.appcompat:appcompat:1.5.0'
+    implementation 'com.google.guava:guava:33.0.0-android'
     implementation 'com.android.support:design:23.0.1'
 }
