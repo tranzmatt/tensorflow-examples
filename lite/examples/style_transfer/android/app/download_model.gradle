@@ -38,14 +38,16 @@ task downloadModelFile2(type: Download) {
     overwrite false
 }
 
-task copyTestModel(type: Copy, dependsOn: downloadModelFile) {
+task copyTestModel(type: Copy) {
     from project.ext.ASSET_DIR + '/predict_int8.tflite'
     into project.ext.TEST_ASSETS_DIR
+    dependsOn downloadModelFile
 }
 
-task copyTestModel0(type: Copy, dependsOn: downloadModelFile) {
+task copyTestModel0(type: Copy) {
     from project.ext.ASSET_DIR + '/transfer_int8.tflite'
     into project.ext.TEST_ASSETS_DIR
+    dependsOn downloadModelFile0
 }
 
 preBuild.dependsOn downloadModelFile, downloadModelFile0, downloadModelFile1,
