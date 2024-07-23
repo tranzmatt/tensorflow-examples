@@ -75,8 +75,8 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.8.0'
 
     // App compat and UI things
-    implementation 'androidx.appcompat:appcompat:1.5.0'
-    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     // Navigation library
@@ -98,7 +98,7 @@ dependencies {
     implementation "androidx.camera:camera-view:$camerax_version"
 
     //WindowManager
-    implementation 'androidx.window:window:1.1.0-alpha03'
+    implementation 'androidx.window:window:1.1.0'
 
     // Unit testing
     testImplementation 'junit:junit:4.13.2'

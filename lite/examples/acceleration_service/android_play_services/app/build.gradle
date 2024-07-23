@@ -25,8 +25,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
     namespace 'org.tensorflow.lite.examples.accelerationservice'
     androidResources {
@@ -44,7 +44,7 @@ dependencies {
     implementation "com.google.android.gms:play-services-tflite-gpu:16.2.0"
 
     implementation "com.google.android.gms:play-services-tasks:18.2.0"
-    implementation "androidx.appcompat:appcompat:1.5.0"
+    implementation "androidx.appcompat:appcompat:1.5.1"
 
     // https://mvnrepository.com/artifact/com.google.errorprone/error_prone_annotations
     implementation group: 'com.google.errorprone', name: 'error_prone_annotations', version: '2.18.0'
