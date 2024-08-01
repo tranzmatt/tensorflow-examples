@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     // Top-level variables used for versioning
-    ext.kotlin_version = '1.9.10'
+    ext.kotlin_version = '1.9.25'
     ext.java_version = JavaVersion.VERSION_17
 
     repositories {

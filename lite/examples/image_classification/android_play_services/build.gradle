@@ -18,7 +18,7 @@ buildscript {
 
     ext {
         // Top-level variables used for versioning
-        ext.kotlin_version = '1.9.10'
+        ext.kotlin_version = '1.9.25'
         ext.java_version = JavaVersion.VERSION_17
     }
 

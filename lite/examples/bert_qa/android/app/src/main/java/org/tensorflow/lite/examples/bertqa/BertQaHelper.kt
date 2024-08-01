@@ -1,18 +1,3 @@
-/*
- * Copyright 2022 The TensorFlow Authors. All Rights Reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *             http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package org.tensorflow.lite.examples.bertqa
 
 import android.content.Context
@@ -28,7 +13,7 @@ import java.lang.IllegalStateException
 class BertQaHelper(
     val context: Context,
     var numThreads: Int = 2,
-    var currentDelegate: Int = 0,
+    var currentDelegate: Int = DELEGATE_CPU, // Default to CPU
     val answererListener: AnswererListener?
 ) {
 
@@ -47,17 +32,26 @@ class BertQaHelper(
 
         when (currentDelegate) {
             DELEGATE_CPU -> {
-                // Default
+                // Default, no action needed
             }
             DELEGATE_GPU -> {
                 if (CompatibilityList().isDelegateSupportedOnThisDevice) {
                     baseOptionsBuilder.useGpu()
+                    Log.i(TAG, "Using GPU Delegate")
                 } else {
                     answererListener?.onError("GPU is not supported on this device")
+                    Log.e(TAG, "GPU is not supported on this device")
+                    return // Exit setup if GPU is not supported
                 }
             }
             DELEGATE_NNAPI -> {
                 baseOptionsBuilder.useNnapi()
+                Log.i(TAG, "Using NNAPI Delegate")
+            }
+            else -> {
+                answererListener?.onError("Invalid delegate option")
+                Log.e(TAG, "Invalid delegate option: $currentDelegate")
+                return // Exit setup if an invalid delegate is provided
             }
         }
 
@@ -68,10 +62,17 @@ class BertQaHelper(
         try {
             bertQuestionAnswerer =
                 BertQuestionAnswerer.createFromFileAndOptions(context, BERT_QA_MODEL, options)
+            Log.i(TAG, "BertQuestionAnswerer created successfully with delegate: $currentDelegate")
         } catch (e: IllegalStateException) {
             answererListener
                 ?.onError("Bert Question Answerer failed to initialize. See error logs for details")
-            Log.e(TAG, "TFLite failed to load model with error: " + e.message)
+            Log.e(TAG, "TFLite failed to load model with error: ${e.message}")
+            // Try fallback to CPU if GPU initialization fails
+            if (currentDelegate != DELEGATE_CPU) {
+                Log.i(TAG, "Falling back to CPU delegate")
+                currentDelegate = DELEGATE_CPU
+                setupBertQuestionAnswerer()
+            }
         }
     }
 
@@ -80,12 +81,16 @@ class BertQaHelper(
             setupBertQuestionAnswerer()
         }
 
-        // Inference time is the difference between the system time at the start and finish of the
-        // process
-        var inferenceTime = SystemClock.uptimeMillis()
+        if (bertQuestionAnswerer == null) {
+            answererListener?.onError("Bert Question Answerer is not initialized")
+            return
+        }
 
+        // Measure inference time
+        val startTime = SystemClock.uptimeMillis()
         val answers = bertQuestionAnswerer?.answer(contextOfQuestion, question)
-        inferenceTime = SystemClock.uptimeMillis() - inferenceTime
+        val inferenceTime = SystemClock.uptimeMillis() - startTime
+
         answererListener?.onResults(answers, inferenceTime)
     }
 
