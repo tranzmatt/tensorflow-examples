@@ -49,7 +49,11 @@ apply from: 'download_models.gradle'
 
 dependencies {
     // Kotlin lang
+<<<<<<< HEAD
     implementation 'androidx.core:core-ktx:1.10.1'
+=======
+    implementation 'androidx.core:core-ktx:1.15.0'
+>>>>>>> upstream/master
 
     // App compat and UI things
     implementation 'androidx.appcompat:appcompat:1.5.1'

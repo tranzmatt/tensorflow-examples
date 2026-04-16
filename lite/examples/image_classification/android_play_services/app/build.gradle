@@ -27,8 +27,13 @@ android {
         applicationId 'org.tensorflow.lite.examples.classification.playservices'
         // ImageClassificationHelper class uses android.util.Size(), which is
         // available from SDK 21.
+<<<<<<< HEAD
         minSdkVersion 28
         targetSdkVersion 33
+=======
+        minSdkVersion 23
+        targetSdkVersion 36
+>>>>>>> upstream/master
         versionCode 1
         versionName "0.0.1"
 
@@ -44,6 +49,7 @@ android {
     compileOptions {
         sourceCompatibility rootProject.ext.java_version
         targetCompatibility rootProject.ext.java_version
+        coreLibraryDesugaringEnabled true
     }
 
     kotlinOptions {
@@ -101,9 +107,15 @@ dependencies {
     implementation "androidx.camera:camera-view:1.0.0-alpha32"
 
     // Tensorflow Lite in Play Services dependencies
+<<<<<<< HEAD
     implementation "com.google.android.gms:play-services-tflite-gpu:16.2.0"
     implementation "com.google.android.gms:play-services-tflite-java:16.1.0"
     implementation "com.google.android.gms:play-services-tflite-support:16.1.0"
+=======
+    implementation "com.google.android.gms:play-services-tflite-gpu:16.4.0"
+    implementation "com.google.android.gms:play-services-tflite-java:16.4.0"
+    implementation "com.google.android.gms:play-services-tflite-support:16.4.0"
+>>>>>>> upstream/master
 
     // Testing-only dependencies
     testImplementation 'org.robolectric:robolectric:4.4'
@@ -116,6 +128,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
     androidTestImplementation 'com.google.truth:truth:1.1.3'
     androidTestImplementation 'com.google.android.gms:play-services-tasks:18.0.2'
+
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.3'
 
 }
 

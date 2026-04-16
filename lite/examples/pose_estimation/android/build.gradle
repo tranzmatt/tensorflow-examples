@@ -1,12 +1,20 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
+<<<<<<< HEAD
     ext.kotlin_version = '1.9.25'
+=======
+    ext.kotlin_version = "1.9.21"
+>>>>>>> upstream/master
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
+<<<<<<< HEAD
         classpath 'com.android.tools.build:gradle:8.5.1'
+=======
+        classpath "com.android.tools.build:gradle:8.0.2"
+>>>>>>> upstream/master
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'de.undercouch:gradle-download-task:4.1.2'
         // NOTE: Do not place your application dependencies here; they belong
